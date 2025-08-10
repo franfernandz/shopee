@@ -50,7 +50,7 @@ function App() {
   };
 
   // Esta función llama a nuestro backend
-  const fetchRecommendations = async (answers) => {
+  /* const fetchRecommendations = async (answers) => {
     setIsLoading(true);
     setError('');
     setRecommendations([]);
@@ -80,6 +80,29 @@ function App() {
     } finally {
       setIsLoading(false);
     }
+}; */
+const fetchRecommendations = async (answers) => {
+  console.log("Usando datos falsos para la recomendación. Respuestas recibidas:", answers);
+  setIsLoading(true);
+  setError('');
+  setRecommendations([]);
+
+  // Simular una espera de 1.5 segundos, como si la API estuviera pensando
+  await new Promise(resolve => setTimeout(resolve, 1500));
+
+  // Datos falsos que simulan una respuesta exitosa
+  const fakeData = [
+    {
+      id: 99,
+      nombre: "Producto Falso 1 (Prueba)",
+      marca: "Marca de Prueba",
+      ocasion: ["día", "test"],
+      explicacion: "Esta es una recomendación de prueba para verificar que el frontend funciona.",
+    },
+  ];
+  
+  setRecommendations(fakeData);
+  setIsLoading(false);
 };
   
   const restartAssistant = () => {
