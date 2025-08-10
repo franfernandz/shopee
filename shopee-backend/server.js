@@ -5,7 +5,22 @@ const pool = require('./db.js');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
+const whitelist = [
+    'http://localhost:5173', // Para desarrollo local
+    'https://shopee/assistant.netlify.app' // ¡Reemplaza con tu URL de Netlify!
+];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
+};
+
+app.use(cors(corsOptions));
 
 // Middleware
 app.use(cors());
