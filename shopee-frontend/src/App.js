@@ -1,6 +1,6 @@
 // src/App.jsx
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css'; // Importaremos un CSS básico más abajo
 
 // Definimos las preguntas que haremos al usuario
