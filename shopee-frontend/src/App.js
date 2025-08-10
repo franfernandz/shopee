@@ -56,7 +56,11 @@ function App() {
     setRecommendations([]);
 
     try {
-      const response = await fetch('http://localhost:3001/api/recommend', {
+      // --- ESTA ES LA LÍNEA CORRECTA PARA CREATE REACT APP ---
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+      // ----------------------------------------------------
+
+      const response = await fetch(`${apiUrl}/api/recommend`,  {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +71,7 @@ function App() {
       if (!response.ok) {
         throw new Error('Algo salió mal con la petición.');
       }
-
+      
       const data = await response.json();
       setRecommendations(data);
 
@@ -76,7 +80,7 @@ function App() {
     } finally {
       setIsLoading(false);
     }
-  };
+};
   
   const restartAssistant = () => {
     setCurrentQuestionIndex(0);
